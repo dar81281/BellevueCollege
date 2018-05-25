@@ -14,18 +14,18 @@
         <ListBox x:Name="recipeListBox" SelectionChanged="recipeListBox_SelectionChanged" HorizontalAlignment="Left" Height="547" Margin="10,64,0,0" VerticalAlignment="Top" ItemsSource="{Binding}" Width="229"/>
         <Label x:Name="errorLabel" FontSize="24" FontWeight="Bold" Foreground="DarkRed" IsEnabled="False" Content="Error Default" HorizontalAlignment="Left" Margin="10,635,0,0" VerticalAlignment="Top"/>
         <Label x:Name="titleLabel" Content="Title Label Defalt" FontSize="30" FontWeight="Bold" HorizontalAlignment="Left" Margin="303,14,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="servingSizeLabel" Content="Serving Size:" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="754,75,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="servingSizeTextBox" HorizontalAlignment="Left" Height="214" Margin="754,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350"/>
-        <Label x:Name="yieldGUILabel" Content="Yield:" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="1109,162,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="yieldLabel" Content="Yield Default" FontSize="24" FontStyle="Italic" HorizontalAlignment="Left" Margin="1109,204,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="servingSizeLabel" Content="Serving Size:" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="824,75,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="servingSizeTextBox" HorizontalAlignment="Left" Height="214" Margin="824,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350"/>
+        <Label x:Name="yieldGUILabel" Content="Yield:" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="1206,157,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="yieldLabel" Content="Yield Default" FontSize="24" FontStyle="Italic" HorizontalAlignment="Left" Margin="1206,199,0,0" VerticalAlignment="Top"/>
         <Label x:Name="ingredientsLabel" Content="Ingredients:" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="303,75,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="ingredientsListBox" HorizontalAlignment="Left" Height="214" Margin="303,117,0,0" VerticalAlignment="Top" Width="350" ItemsSource="{Binding}"/>
-        <TextBox x:Name="directionsTextBox" HorizontalAlignment="Left" Height="224" Margin="303,382,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350"/>
-        <TextBox x:Name="commentTextBox" HorizontalAlignment="Left" Height="224" Margin="754,382,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350"/>
+        <ListBox x:Name="ingredientsListBox" HorizontalAlignment="Left" Height="214" Margin="303,117,0,0" VerticalAlignment="Top" Width="431" ItemsSource="{Binding}"/>
+        <TextBox x:Name="directionsTextBox" HorizontalAlignment="Left" Height="224" Margin="303,382,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="431"/>
+        <TextBox x:Name="commentTextBox" HorizontalAlignment="Left" Height="224" Margin="824,382,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350"/>
         <Label x:Name="directionsLabel" Content="Directions:" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="303,340,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="commentLabel" Content="Comments:" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="754,340,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="typeGUILabel" Content="Recipe Type:" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="1109,49,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="recipeTypeLabel" Content="Defalt Type" FontSize="24" FontStyle="Italic" HorizontalAlignment="Left" Margin="1109,80,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="commentLabel" Content="Comments:" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="824,340,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="typeGUILabel" Content="Recipe Type:" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="1206,49,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="recipeTypeLabel" Content="Defalt Type" FontSize="24" FontStyle="Italic" HorizontalAlignment="Left" Margin="1206,75,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

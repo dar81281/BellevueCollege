@@ -15,7 +15,7 @@ namespace RecipeClassLibrary
             // Load the RecipesContext database with data XML files
 
             // Load Recipes from XML file
-            List<Recipe> recipes = GetRecipeDataFromXDocument();
+            List<Recipe> recipes = GetRecipeDataFromXDocument(context.RecipesXMLLocation);
 
             foreach (Recipe recipe in recipes)
             {
@@ -25,7 +25,7 @@ namespace RecipeClassLibrary
             context.SaveChanges();
 
             // Load ingredients from XML
-            List<Ingredient> ingredients = GetIngredientDataFromXDocument();
+            List<Ingredient> ingredients = GetIngredientDataFromXDocument(context.IngredientsXMLLocation);
 
             foreach (Ingredient ingredient in ingredients)
             {
@@ -40,11 +40,11 @@ namespace RecipeClassLibrary
         /// Query loaded XDocument to retrieve recipes to a List.
         /// </summary>
         /// <returns></returns>
-        static List<Recipe> GetRecipeDataFromXDocument()
+        static List<Recipe> GetRecipeDataFromXDocument(string path)
         {
             //Get contents of XML file using LINQ to XML.
             var recipesXML = (
-                from r in XDocument.Load("Recipes.xml").Descendants("Recipe")
+                from r in XDocument.Load(path).Descendants("Recipe")
                 select r).ToList();
 
             // Set up collection to store contents from XML file
@@ -95,11 +95,11 @@ namespace RecipeClassLibrary
         /// Query loaded XDocument to place ingredient data into a List.
         /// </summary>
         /// <returns></returns>
-        static List<Ingredient> GetIngredientDataFromXDocument()
+        static List<Ingredient> GetIngredientDataFromXDocument(string path)
         {
             //Get contents of XML file using LINQ to XML.
             var ingredientsXML = (
-                from i in XDocument.Load("Ingredients.xml").Descendants("Ingredient")
+                from i in XDocument.Load(path).Descendants("Ingredient")
                 select i).ToList();
 
             // Set up collection to store contents from XML file
