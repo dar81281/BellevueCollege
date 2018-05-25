@@ -1,0 +1,21 @@
+﻿<Window x:Class="LeftOversGui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LeftOversGui"
+        mc:Ignorable="d"
+        Title="Cooking With LeftOvers" Height="350" Width="525" ContentStringFormat="">
+    <Grid>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="197" Margin="27,76,0,0" VerticalAlignment="Top" Width="115"/>
+        <ListBox x:Name="listBox1" HorizontalAlignment="Left" Height="161" Margin="151,110,0,0" VerticalAlignment="Top" Width="231"/>
+        <Button x:Name="button" Content="Add" Margin="409,112,33,174" Width="75" HorizontalAlignment="Center" VerticalAlignment="Center" Height="33"/>
+        <Button x:Name="button1" Content="Modefy " Margin="408,162,34,123" Width="75" HorizontalAlignment="Center" VerticalAlignment="Center" Height="34" RenderTransformOrigin="0.487,0.91"/>
+        <Button x:Name="button2" Content="Delete" Margin="409,212,33,73" Width="75" HorizontalAlignment="Center" VerticalAlignment="Center" Height="34"/>
+        <Label x:Name="feebBack_Label" Content="" HorizontalAlignment="Left" Margin="17,5,0,0" VerticalAlignment="Top" Height="42" Width="471"/>
+        <Button x:Name="button3" Content="E_xit" HorizontalAlignment="Left" Margin="425,292,0,0" VerticalAlignment="Top" Width="87" Height="23"/>
+        <Label x:Name="label1" Content="Instructions" HorizontalAlignment="Left" Margin="153,82,0,0" VerticalAlignment="Top" Width="198"/>
+        <Label x:Name="label2" Content="Recipe" HorizontalAlignment="Left" Margin="25,52,0,0" VerticalAlignment="Top" Width="112"/>
+
+    </Grid>
+</Window>
