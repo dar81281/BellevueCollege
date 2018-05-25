@@ -7,15 +7,15 @@
         mc:Ignorable="d"
         Title="Cooking With LeftOvers" Height="350" Width="525" ContentStringFormat="">
     <Grid>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="197" Margin="27,76,0,0" VerticalAlignment="Top" Width="115" ItemsSource="{Binding}"/>
-        <ListBox x:Name="listBox1" HorizontalAlignment="Left" Height="161" Margin="151,110,0,0" VerticalAlignment="Top" Width="231" ItemsSource="{Binding}"/>
-        <Button x:Name="button" Content="Add" Margin="409,112,33,173" Width="75" HorizontalAlignment="Center" VerticalAlignment="Center" Height="34" IsEnabled="False"/>
-        <Button x:Name="button1" Content="Modify" Margin="408,162,34,123" Width="75" HorizontalAlignment="Center" VerticalAlignment="Center" Height="34" RenderTransformOrigin="0.487,0.91" IsEnabled="False"/>
-        <Button x:Name="button2" Content="Delete" Margin="409,212,33,73" Width="75" HorizontalAlignment="Center" VerticalAlignment="Center" Height="34" IsEnabled="False"/>
+        <ListBox x:Name="recipeNames_listBox" HorizontalAlignment="Left" Height="197" Margin="27,76,0,0" VerticalAlignment="Top" Width="115" ItemsSource="{Binding}"/>
+        <ListBox x:Name="instructions_ListBox" HorizontalAlignment="Left" Height="161" Margin="151,110,0,0" VerticalAlignment="Top" Width="231" ItemsSource="{Binding}"/>
+        <Button x:Name="add_Button" Content="Add" Margin="409,112,33,173" Width="75" HorizontalAlignment="Center" VerticalAlignment="Center" Height="34" IsEnabled="False"/>
+        <Button x:Name="modify_Button" Content="Modify" Margin="408,162,34,123" Width="75" HorizontalAlignment="Center" VerticalAlignment="Center" Height="34" RenderTransformOrigin="0.487,0.91" IsEnabled="False"/>
+        <Button x:Name="delete_Button" Content="Delete" Margin="409,212,33,73" Width="75" HorizontalAlignment="Center" VerticalAlignment="Center" Height="34" IsEnabled="False"/>
         <Label x:Name="feebBack_Label" Content="" HorizontalAlignment="Left" Margin="17,5,0,0" VerticalAlignment="Top" Height="48" Width="466"/>
-        <Button x:Name="button3" Content="E_xit" HorizontalAlignment="Left" Margin="422,288,0,0" VerticalAlignment="Top" Width="87" Height="23" Click="button3_Click"/>
-        <Label x:Name="label1" Content="Instructions" HorizontalAlignment="Left" Margin="153,82,0,0" VerticalAlignment="Top" Width="72"/>
-        <Label x:Name="label2" Content="Recipe" HorizontalAlignment="Left" Margin="25,52,0,0" VerticalAlignment="Top" Width="112"/>
+        <Button x:Name="exit_Button" Content="E_xit" HorizontalAlignment="Left" Margin="422,288,0,0" VerticalAlignment="Top" Width="87" Height="23" Click="button3_Click"/>
+        <Label x:Name="Instructions_Label" Content="Instructions" HorizontalAlignment="Left" Margin="153,82,0,0" VerticalAlignment="Top" Width="72"/>
+        <Label x:Name="recipe_Label" Content="Recipe" HorizontalAlignment="Left" Margin="25,52,0,0" VerticalAlignment="Top" Width="112"/>
 
     </Grid>
 </Window>
