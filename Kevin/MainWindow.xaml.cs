@@ -24,5 +24,10 @@ namespace LeftOversGui
         {
             InitializeComponent();
         }
+
+        private void button3_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
