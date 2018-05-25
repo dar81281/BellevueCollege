@@ -31,18 +31,17 @@ namespace RecipeGroupApplication
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            Database.SetInitializer<RecipesContext>(new Recip)
             using (RecipesContext db = new RecipesContext())
             {
-                XmlReader recipeReader;
-                XmlReader ingredientReader;
-
-                //string connectionString;
-                //connectionString = "Data Source=servername;Initial Catalog=databsename;User ID=username;Password=password";
-
-                recipeReader = XmlReader.Create("Recipes.xml");
-                ingredientReader = XmlReader.Create("Ingredients.xml");
+                
+                
 
 
+                List<XElement> recipeReader = XDocument.Load("Recipes.xml")
+                                     .Descendants("Recipe").ToList();
+                List<XElement> ingredientReader = XDocument.Load("Ingredients.xml")
+                                     .Descendants("Ingredient").ToList();
 
                 //Code snippet from Wes
                 //XDocument xmldoc = XDocument.Load(xmlStream);
@@ -53,6 +52,20 @@ namespace RecipeGroupApplication
                 //listBox1.DisplayMember = "Item";
                 //listBox1.ValueMember = "Value";
             }
+        }
+        public Recipe[] GetRecipesFromXDocument()
+        {
+            List<XElement> recipeReader = XDocument.Load("Recipes.xml")
+                                     .Descendants("Recipe").ToList();
+            Recipe newRecipe;
+            foreach(var rec in recipeReader)
+            {
+                newRecipe = new Recipe();
+                newRecipe.RecipeID = recipeReader.Element("RecipeID").Value.Trim();
+                newRecipe.RecipeType = recipeReader.Element("RecipeType").Value.Trim();
+            }
+
+            return recipeReader;
         }
 
         private void Window_Closed(object sender, EventArgs e)
