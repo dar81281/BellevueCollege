@@ -72,9 +72,9 @@ namespace LeftoversRecipeApp
             //XDocument document = new XDocument(
             //    new XDeclaration("1.0", "utf-8", "yes"),
             //        new XComment("Contents of Recipes table in database"),
-            //        new XElement("Recipes",
+            //        new XAttribute("Recipes",
             //            from r in context.Recipes
-            //            select new XElement("Recipe",
+            //            select new XAttribute("Recipe",
             //                   new XElement("RecipeID", r.RecipeID),
             //                   new XElement("Title", r.Title),
             //                   new XElement("RecipeType", r.RecipeID),
@@ -96,9 +96,56 @@ namespace LeftoversRecipeApp
             //                   new XElement("RecipeID", i.RecipeID),
             //                   new XElement("Description", i.Description))));
             //document.Save(context.IngredientsXMLLocation);
-            context.Dispose();
+            //context.Dispose();
 
-        }
+            RecipesContext dbContext = new RecipesContext();
+            
+
+           List<Recipe> recipes = (from r in dbContext.Recipes 
+                    select r).ToList();
+
+            List<Ingredient> ingredients = (from i in dbContext.Ingredients
+                                    select i).ToList();
+
+            var query1 = dbContext.Recipes.AsEnumerable<Recipe>();
+            var query2 = dbContext..AsEnumerable<Ingredient>();
+
+                //Create Recipe XML document
+
+                XDocument Recipe = new XDocument(
+                    new XDeclaration("1.0", "UTF-8", "true"),
+                    new XElement("Recipes",
+                      from r in query1
+                      select new XElement("Recipe",
+                        new XElement("RecipeID", r.RecipeID),
+                          new XElement("Title", r.Title),
+                          new XElement("RecipeType", r.RecipeType),
+                          new XElement("ServingSize", r.ServingSize),
+                          new XElement("Yield", r.Yield),
+                          new XElement("Directions", r.Directions),
+                          new XElement("Comment", r.Comment)
+                          )
+                      )
+                    );
+
+                //Create Ingredients Doc
+
+                XDocument Ingredients = new XDocument(
+                    new XDeclaration("1.0", "UTF-8", "true"),
+                    new XElement("Ingredients",
+                      from i in query2
+                      select new XElement("Ingredient",
+                        new XElement("IngredientID", i.IngredientID),
+                        new XElement("RecipeID", i.RecipeID),
+                        new XElement("Description", i.Description)
+                          )
+                      )
+                    );
+
+                Recipe.Save("Recipes");
+                Ingredients.Save("Ingredients");
+            }
+        
 
         private void recipeListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
