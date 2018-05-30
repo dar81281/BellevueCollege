@@ -27,10 +27,17 @@ namespace RecipeClassLibrary
         public void GetXMLPaths(string nameRec, string nameIng)
         {
             string root = Path.GetPathRoot(System.Reflection.Assembly.GetEntryAssembly().Location);
-            string file = Directory.GetFiles(root, nameRec, SearchOption.AllDirectories).FirstOrDefault();
-            RecipesXMLLocation = file;
-            file = Directory.GetFiles(root, nameIng, SearchOption.AllDirectories).FirstOrDefault();
-            IngredientsXMLLocation = file;
+            try
+            {
+                string file = Directory.GetFiles(root, nameRec, SearchOption.AllDirectories).FirstOrDefault();
+                RecipesXMLLocation = file;
+                file = Directory.GetFiles(root, nameIng, SearchOption.AllDirectories).FirstOrDefault();
+                IngredientsXMLLocation = file;
+            }
+            catch (System.UnauthorizedAccessException uae)
+            {
+                //Ignore UAE exceptions for now
+            }
         }
 
         //Destructor will create the xml files from the Ingredients and Recipes properties and will save the files at the locations in the XMLLocation strings
