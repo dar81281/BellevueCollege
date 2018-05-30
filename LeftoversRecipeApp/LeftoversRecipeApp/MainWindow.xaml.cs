@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Data.Entity;
 using RecipeClassLibrary;
 using System.Xml.Linq;
+using System.Xml;
 
 namespace LeftoversRecipeApp
 {
@@ -99,21 +100,24 @@ namespace LeftoversRecipeApp
             //context.Dispose();
 
             RecipesContext dbContext = new RecipesContext();
-            
+            XmlWriterSettings xws = new XmlWriterSettings();
+            xws.OmitXmlDeclaration = false;
+            xws.Indent = true;
 
-           List<Recipe> recipes = (from r in dbContext.Recipes 
-                    select r).ToList();
+
+            List<Recipe> recipes = (from r in dbContext.Recipes
+                                    select r).ToList();
 
             List<Ingredient> ingredients = (from i in dbContext.Ingredients
-                                    select i).ToList();
+                                            select i).ToList();
 
             var query1 = dbContext.Recipes.AsEnumerable<Recipe>();
             var query2 = dbContext.Ingredients.AsEnumerable<Ingredient>();
 
-                //Create Recipe XML document
-
+            //Create Recipe XML document
+            using (XmlWriter xw1 = XmlWriter.Create("Recipes.xml", xws))
+            {
                 XDocument Recipe = new XDocument(
-                    new XDeclaration("1.0", "UTF-8", "true"),
                     new XElement("Recipes",
                       from r in query1
                       select new XElement("Recipe",
@@ -128,10 +132,14 @@ namespace LeftoversRecipeApp
                       )
                     );
 
+                Recipe.Save(xw1);
+            }
+
+            using (XmlWriter xw2 = XmlWriter.Create("Ingredients.xml", xws))
+            {
                 //Create Ingredients Doc
 
                 XDocument Ingredients = new XDocument(
-                    new XDeclaration("1.0", "UTF-8", "true"),
                     new XElement("Ingredients",
                       from i in query2
                       select new XElement("Ingredient",
@@ -141,10 +149,9 @@ namespace LeftoversRecipeApp
                           )
                       )
                     );
-
-                Recipe.Save("Recipes");
-                Ingredients.Save("Ingredients");
+                Ingredients.Save(xw2);
             }
+        }
         
 
         private void recipeListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
