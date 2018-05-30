@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.Entity;
 using RecipeClassLibrary;
+using System.Xml.Linq;
 
 namespace LeftoversRecipeApp
 {
@@ -34,15 +35,18 @@ namespace LeftoversRecipeApp
             try
             {
                 //Turn off unused controls, will be activated by selecting recipes
-                titleLabel.IsEnabled = false;
+                
+                titleLabel.Content = "Please select a recipe from the list.";
                 errorLabel.Content = "";
                 yieldGUILabel.IsEnabled = false;
                 yieldLabel.IsEnabled = false;
+                yieldLabel.Content = "";
                 servingSizeLabel.IsEnabled = false;
                 servingSizeTextBox.IsEnabled = false;
                 commentTextBox.IsEnabled = false;
                 commentLabel.IsEnabled = false;
                 recipeTypeLabel.IsEnabled = false;
+                recipeTypeLabel.Content = "";
                 typeGUILabel.IsEnabled = false;
                 directionsLabel.IsEnabled = false;
                 directionsTextBox.IsEnabled = false;
@@ -64,7 +68,36 @@ namespace LeftoversRecipeApp
 
         private void Window_Closed(object sender, EventArgs e)
         {
+            //saving the recipes
+            //XDocument document = new XDocument(
+            //    new XDeclaration("1.0", "utf-8", "yes"),
+            //        new XComment("Contents of Recipes table in database"),
+            //        new XElement("Recipes",
+            //            from r in context.Recipes
+            //            select new XElement("Recipe",
+            //                   new XElement("RecipeID", r.RecipeID),
+            //                   new XElement("Title", r.Title),
+            //                   new XElement("RecipeType", r.RecipeID),
+            //                   r.ServingSize == null ? null :
+            //                   new XElement("ServingSize", r.ServingSize),
+            //                   r.Yield == null ? null :
+            //                   new XElement("Yield", r.Yield),
+            //                   new XElement("Directions", r.Directions),
+            //                   r.Yield == null ? null :
+            //                   new XElement("Comment", r.Comment))));
+            //document.Save(context.RecipesXMLLocation);
+            //document = new XDocument(
+            //    new XDeclaration("1.0", "utf-8", "yes"),
+            //        new XComment("Contents of the Ingredients table in databse"),
+            //        new XElement("Ingredients",
+            //            from i in context.Ingredients
+            //            select new XElement("Ingredient",
+            //                   new XElement("IngredientID", i.IngredientID),
+            //                   new XElement("RecipeID", i.RecipeID),
+            //                   new XElement("Description", i.Description))));
+            //document.Save(context.IngredientsXMLLocation);
             context.Dispose();
+
         }
 
         private void recipeListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
