@@ -23,21 +23,21 @@ namespace RecipeClassLibrary
         public string IngredientsXMLLocation { get; private set; }
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
- 
+
         //Methods to find the wayward xml files
         public void GetXMLPaths(string nameRec, string nameIng)
         {
             string root = Path.GetPathRoot(System.Reflection.Assembly.GetEntryAssembly().Location);
-            try
+
+            foreach (string fileName in SafeFileEnum.EnumerateFiles(root, RECIPESXML, SearchOption.AllDirectories))
             {
-                string file = Directory.GetFiles(root, nameRec, SearchOption.AllDirectories).FirstOrDefault();
-                RecipesXMLLocation = file;
-                file = Directory.GetFiles(root, nameIng, SearchOption.AllDirectories).FirstOrDefault();
-                IngredientsXMLLocation = file;
+              
+                RecipesXMLLocation = fileName;
+
             }
-            catch (System.UnauthorizedAccessException uae)
+            foreach (string fileName in SafeFileEnum.EnumerateFiles(root, INGREDIENTSXML, SearchOption.AllDirectories))
             {
-                //Ignore UAE exceptions for now
+                IngredientsXMLLocation = fileName;
             }
         }
         public void XMLSerializer()

@@ -52,6 +52,7 @@
     <Compile Include="Recipe.cs" />
     <Compile Include="RecipesContext.cs" />
     <Compile Include="RecipesContextInitializer.cs" />
+    <Compile Include="SafeFileEnum.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
