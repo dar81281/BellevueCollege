@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace RecipeClassLibrary
@@ -22,7 +23,7 @@ namespace RecipeClassLibrary
         public string IngredientsXMLLocation { get; private set; }
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
-
+ 
         //Methods to find the wayward xml files
         public void GetXMLPaths(string nameRec, string nameIng)
         {
@@ -39,39 +40,68 @@ namespace RecipeClassLibrary
                 //Ignore UAE exceptions for now
             }
         }
+        public void XMLSerializer()
+        {
+
+            RecipesContext dbContext = new RecipesContext();
+            XmlWriterSettings xws = new XmlWriterSettings();
+            xws.OmitXmlDeclaration = false;
+            xws.NewLineOnAttributes = true;
+            xws.Indent = true;
+
+
+            List<Recipe> recipes = (from r in dbContext.Recipes
+                                    select r).ToList();
+
+            List<Ingredient> ingredients = (from i in dbContext.Ingredients
+                                            select i).ToList();
+
+            var query1 = dbContext.Recipes.AsEnumerable<Recipe>();
+            var query2 = dbContext.Ingredients.AsEnumerable<Ingredient>();
+
+            //Create Recipe XML doc
+            using (XmlWriter xw1 = XmlWriter.Create("Recipes.xml", xws))
+            {
+                XDocument Recipe = new XDocument(
+                    new XElement("Recipes",
+                      from r in query1
+                      select new XElement("Recipe",
+                        new XElement("RecipeID", r.RecipeID),
+                          new XElement("Title", r.Title),
+                          new XElement("RecipeType", r.RecipeType),
+                          new XElement("ServingSize", r.ServingSize),
+                          new XElement("Yield", r.Yield),
+                          new XElement("Directions", r.Directions),
+                          new XElement("Comment", r.Comment)
+                          )
+                      )
+                    );
+
+                Recipe.Save(xw1);
+
+            }
+
+            using (XmlWriter xw2 = XmlWriter.Create("Ingredients.xml", xws))
+            {
+                //Create Ingredients XML Doc
+                XDocument Ingredients = new XDocument(
+                    new XElement("Ingredients",
+                      from i in query2
+                      select new XElement("Ingredient",
+                        new XElement("IngredientID", i.IngredientID),
+                        new XElement("RecipeID", i.RecipeID),
+                        new XElement("Description", i.Description)
+                          )
+                      )
+                    );
+                Ingredients.Save(xw2);
+            }
+        }
 
         //Destructor will create the xml files from the Ingredients and Recipes properties and will save the files at the locations in the XMLLocation strings
         ~RecipesContext()
         {
-            
-            ////saving the recipes
-            //XDocument document = new XDocument(
-            //    new XDeclaration("1.0", "utf-8", "yes"),
-            //        new XComment("Contents of Recipes table in database"),
-            //        new XElement("Recipes",
-            //            from r in Recipes
-            //            select new XElement("Recipe",
-            //                   new XElement("RecipeID", r.RecipeID),
-            //                   new XElement("Title", r.Title),
-            //                   new XElement("RecipeType", r.RecipeID),
-            //                   r.ServingSize == null ? null :
-            //                   new XElement("ServingSize", r.ServingSize),
-            //                   r.Yield == null ? null :
-            //                   new XElement("Yield", r.Yield),
-            //                   new XElement("Directions", r.Directions),
-            //                   r.Yield == null ? null :
-            //                   new XElement("Comment", r.Comment))));
-            //document.Save(RecipesXMLLocation);
-            //document = new XDocument(
-            //    new XDeclaration("1.0", "utf-8", "yes"),
-            //        new XComment("Contents of the Ingredients table in databse"),
-            //        new XElement("Ingredients",
-            //            from i in Ingredients
-            //            select new XElement("Ingredient",
-            //                   new XElement("IngredientID", i.IngredientID),
-            //                   new XElement("RecipeID", i.RecipeID),
-            //                   new XElement("Description", i.Description))));
-            //document.Save(IngredientsXMLLocation);
+
         }
     }
 }
