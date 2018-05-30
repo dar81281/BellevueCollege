@@ -108,7 +108,7 @@ namespace LeftoversRecipeApp
                                     select i).ToList();
 
             var query1 = dbContext.Recipes.AsEnumerable<Recipe>();
-            var query2 = dbContext..AsEnumerable<Ingredient>();
+            var query2 = dbContext.Ingredients.AsEnumerable<Ingredient>();
 
                 //Create Recipe XML document
 
