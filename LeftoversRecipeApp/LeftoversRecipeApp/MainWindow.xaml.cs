@@ -114,7 +114,7 @@ namespace LeftoversRecipeApp
             var query1 = dbContext.Recipes.AsEnumerable<Recipe>();
             var query2 = dbContext.Ingredients.AsEnumerable<Ingredient>();
 
-            //Create Recipe XML document
+            //Create Recipe XML doc
             using (XmlWriter xw1 = XmlWriter.Create("Recipes.xml", xws))
             {
                 XDocument Recipe = new XDocument(
@@ -137,8 +137,7 @@ namespace LeftoversRecipeApp
 
             using (XmlWriter xw2 = XmlWriter.Create("Ingredients.xml", xws))
             {
-                //Create Ingredients Doc
-
+                //Create Ingredients XML Doc
                 XDocument Ingredients = new XDocument(
                     new XElement("Ingredients",
                       from i in query2
