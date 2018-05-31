@@ -99,8 +99,8 @@ namespace LeftoversRecipeApp
             //document.Save(context.IngredientsXMLLocation);
             context.Dispose();
 
-            RecipesContext close = new RecipesContext();
-            close.XMLSerializer();
+            //RecipesContext close = new RecipesContext();
+            //close.XMLSerializer();
           
         }
 
