@@ -97,7 +97,7 @@ namespace LeftoversRecipeApp
             //                   new XElement("RecipeID", i.RecipeID),
             //                   new XElement("Description", i.Description))));
             //document.Save(context.IngredientsXMLLocation);
-            //context.Dispose();
+            context.Dispose();
 
             RecipesContext close = new RecipesContext();
             close.XMLSerializer();

@@ -62,7 +62,7 @@ namespace RecipeClassLibrary
                     switch (x.Name.ToString())
                     {
                         case "RecipeID":
-                            recipe.RecipeID = rec.Element("RecipeID").Value.Trim();
+                            recipe.RecipeID = int.Parse(rec.Element("RecipeID").Value.Trim());
                             break;
                         case "Title":
                             recipe.Title = rec.Element("Title").Value.Trim();
@@ -113,8 +113,8 @@ namespace RecipeClassLibrary
                 ingredient = new Ingredient();
 
 
-                ingredient.IngredientID = i.Element("IngredientID").Value.Trim();
-                ingredient.RecipeID = i.Element("RecipeID").Value.Trim();
+                ingredient.IngredientID = int.Parse(i.Element("IngredientID").Value.Trim());
+                ingredient.RecipeID = int.Parse(i.Element("RecipeID").Value.Trim());
                 ingredient.Description = i.Element("Description").Value.Trim();
 
                 //Appending the row to the List collection

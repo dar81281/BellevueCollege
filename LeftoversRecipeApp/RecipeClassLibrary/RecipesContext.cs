@@ -51,9 +51,11 @@ namespace RecipeClassLibrary
 
 
             List<Recipe> recipes = (from r in dbContext.Recipes
+                                    orderby r.RecipeID
                                     select r).ToList();
 
             List<Ingredient> ingredients = (from i in dbContext.Ingredients
+                                            orderby i.IngredientID
                                             select i).ToList();
 
             var query1 = dbContext.Recipes.AsEnumerable<Recipe>();
