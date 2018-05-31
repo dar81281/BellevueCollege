@@ -12,7 +12,7 @@ namespace RecipeClassLibrary
 {
     public class RecipesContext : DbContext
     {
-        public RecipesContext() : base("name=RecipesDBConnectionString")
+        public RecipesContext() : base("name=RecipesDB")
         {
             GetXMLPaths(RECIPESXML, INGREDIENTSXML);
         }
