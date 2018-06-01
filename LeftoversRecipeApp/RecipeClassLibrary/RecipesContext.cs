@@ -29,8 +29,16 @@ namespace RecipeClassLibrary
         {
             string root = Path.GetPathRoot(System.Reflection.Assembly.GetEntryAssembly().Location);
             string file = Directory.GetFiles(root, nameRec, SearchOption.AllDirectories).FirstOrDefault();
+            if (file == null)
+            {
+                file = RECIPESXML;
+            }
             RecipesXMLLocation = file;
             file = Directory.GetFiles(root, nameIng, SearchOption.AllDirectories).FirstOrDefault();
+            if (file == null)
+            {
+                file = INGREDIENTSXML;
+            }
             IngredientsXMLLocation = file;
         }
         public void XMLSerializer()
