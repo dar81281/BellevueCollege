@@ -14,7 +14,8 @@ namespace RecipeClassLibrary
     {
         public RecipesContext() : base("name=RecipesDB")
         {
-            GetXMLPaths(RECIPESXML, INGREDIENTSXML);
+            IngredientsXMLLocation = GetXMLIngredientsPaths(INGREDIENTSXML);
+            RecipesXMLLocation = GetXMLRecipesPath(RECIPESXML);
         }
 
         private const string RECIPESXML = "Recipes.xml";
@@ -25,7 +26,7 @@ namespace RecipeClassLibrary
         public DbSet<Recipe> Recipes { get; set; }
 
         //Methods to find the wayward xml files
-        public void GetXMLPaths(string nameRec, string nameIng)
+        public string GetXMLRecipesPath(string nameRec)
         {
             string root = Path.GetPathRoot(System.Reflection.Assembly.GetEntryAssembly().Location);
             string file = Directory.GetFiles(root, nameRec, SearchOption.AllDirectories).FirstOrDefault();
@@ -33,23 +34,26 @@ namespace RecipeClassLibrary
             {
                 file = RECIPESXML;
             }
-            RecipesXMLLocation = file;
-            file = Directory.GetFiles(root, nameIng, SearchOption.AllDirectories).FirstOrDefault();
+            return file;
+        }
+        public string GetXMLIngredientsPaths(string nameIngredient)
+        {
+            string root = Path.GetPathRoot(System.Reflection.Assembly.GetEntryAssembly().Location);
+            string file = Directory.GetFiles(root, nameIngredient, SearchOption.AllDirectories).FirstOrDefault();
             if (file == null)
             {
                 file = INGREDIENTSXML;
             }
-            IngredientsXMLLocation = file;
+            return file;
+
         }
-        public void XMLSerializer()
+        public void XMLRecipeSerializer()
         {
             //New lists are needed here due to LINQ to Entities requiring them.
             List<Recipe> recipes = (from r in Recipes
                                     orderby r.RecipeID
                                     select r).ToList();
-            List<Ingredient> ingredients = (from i in Ingredients
-                                            orderby i.IngredientID
-                                            select i).ToList();
+            
             XDocument document = new XDocument(
                 new XDeclaration("1.0", "utf-8", "yes"),
                     new XComment("Contents of Recipes table in database"),
@@ -71,7 +75,16 @@ namespace RecipeClassLibrary
             {
                 document.Save(RecipesXMLLocation);
             }
-            document = new XDocument(
+            
+        }
+        public void XMLIngredientSerializer()
+        {
+            //New lists are needed here due to LINQ to Entities requiring them.
+            
+            List<Ingredient> ingredients = (from i in Ingredients
+                                            orderby i.IngredientID
+                                            select i).ToList();
+            XDocument document = new XDocument(
                 new XDeclaration("1.0", "utf-8", "yes"),
                     new XComment("Contents of the Ingredients table in databse"),
                     new XElement("Ingredients",
@@ -95,7 +108,8 @@ namespace RecipeClassLibrary
             {
                 if (disposing)
                 {
-                    XMLSerializer();
+                    XMLRecipeSerializer();
+                    XMLIngredientSerializer();
                 }
                 
                 disposedValue = true;

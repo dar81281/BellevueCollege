@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2000
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeftoversRecipeApp", "LeftoversRecipeApp\LeftoversRecipeApp.csproj", "{D3185455-6A47-4857-BCFA-630C42E9101E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeClassLibrary", "RecipeClassLibrary\RecipeClassLibrary.csproj", "{39A96E87-4EF9-46A5-AE2E-0D0626FEAD4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeTester", "RecipeTester\RecipeTester.csproj", "{B44FCB07-973C-4184-A09D-8ADDD063ACD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{39A96E87-4EF9-46A5-AE2E-0D0626FEAD4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39A96E87-4EF9-46A5-AE2E-0D0626FEAD4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39A96E87-4EF9-46A5-AE2E-0D0626FEAD4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B44FCB07-973C-4184-A09D-8ADDD063ACD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B44FCB07-973C-4184-A09D-8ADDD063ACD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B44FCB07-973C-4184-A09D-8ADDD063ACD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B44FCB07-973C-4184-A09D-8ADDD063ACD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
