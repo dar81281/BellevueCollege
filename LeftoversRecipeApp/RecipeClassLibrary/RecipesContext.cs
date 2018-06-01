@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 
+[assembly: InternalsVisibleTo("RecipesTester")]
 namespace RecipeClassLibrary
 {
+    
     public class RecipesContext : DbContext
     {
         public RecipesContext() : base("name=RecipesDB")
@@ -26,7 +29,7 @@ namespace RecipeClassLibrary
         public DbSet<Recipe> Recipes { get; set; }
 
         //Methods to find the wayward xml files
-        public string GetXMLRecipesPath(string nameRec)
+        public static string GetXMLRecipesPath(string nameRec)
         {
             string root = Path.GetPathRoot(System.Reflection.Assembly.GetEntryAssembly().Location);
             string file = Directory.GetFiles(root, nameRec, SearchOption.AllDirectories).FirstOrDefault();
@@ -36,7 +39,7 @@ namespace RecipeClassLibrary
             }
             return file;
         }
-        public string GetXMLIngredientsPaths(string nameIngredient)
+        public static string GetXMLIngredientsPaths(string nameIngredient)
         {
             string root = Path.GetPathRoot(System.Reflection.Assembly.GetEntryAssembly().Location);
             string file = Directory.GetFiles(root, nameIngredient, SearchOption.AllDirectories).FirstOrDefault();

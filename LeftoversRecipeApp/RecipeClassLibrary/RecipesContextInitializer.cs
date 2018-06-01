@@ -40,7 +40,7 @@ namespace RecipeClassLibrary
         /// Query loaded XDocument to retrieve recipes to a List.
         /// </summary>
         /// <returns></returns>
-        static List<Recipe> GetRecipeDataFromXDocument(string path)
+        public static List<Recipe> GetRecipeDataFromXDocument(string path)
         {
             //Get contents of XML file using LINQ to XML.
             var recipesXML = (
@@ -95,7 +95,7 @@ namespace RecipeClassLibrary
         /// Query loaded XDocument to place ingredient data into a List.
         /// </summary>
         /// <returns></returns>
-        static List<Ingredient> GetIngredientDataFromXDocument(string path)
+        public static List<Ingredient> GetIngredientDataFromXDocument(string path)
         {
             //Get contents of XML file using LINQ to XML.
             var ingredientsXML = (
