@@ -175,7 +175,7 @@ namespace LeftoversRecipeApp
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
-            if(exitButtonClicked)
+            if (exitButtonClicked)
             {
                 base.OnClosing(e);
             }
@@ -184,6 +184,7 @@ namespace LeftoversRecipeApp
                 errorLabel.Content = "Please use the exit button to close the application";
                 e.Cancel = true;
             }
+        }
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
