@@ -164,5 +164,23 @@ namespace LeftoversRecipeApp
                 errorLabel.IsEnabled = true;
             }
         }
+
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            //Clear List and Text Boxes
+            recipeListBox.SelectedItem = null;
+            ingredientsListBox.DataContext = null;
+            ingredientsListBox.Items.Refresh();
+            directionsTextBox.Clear();
+            commentTextBox.Clear();
+            servingSizeTextBox.Clear();
+
+            //Clear Labels 
+         
+            recipeTypeLabel.Content = "";
+            yieldLabel.Content = "";
+            errorLabel.Content = "";
+
+        }
     }
 }
