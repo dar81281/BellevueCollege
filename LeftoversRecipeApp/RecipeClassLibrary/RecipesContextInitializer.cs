@@ -15,7 +15,7 @@ namespace RecipeClassLibrary
             // Load the RecipesContext database with data XML files
 
             // Load Recipes from XML file
-            List<Recipe> recipes = GetRecipeDataFromXDocument(context.RecipesXMLLocation);
+            List<Recipe> recipes = GetRecipeDataFromXDocument(GUIManager.RecipesXMLLocation);
 
             foreach (Recipe recipe in recipes)
             {
@@ -25,7 +25,7 @@ namespace RecipeClassLibrary
             context.SaveChanges();
 
             // Load ingredients from XML
-            List<Ingredient> ingredients = GetIngredientDataFromXDocument(context.IngredientsXMLLocation);
+            List<Ingredient> ingredients = GetIngredientDataFromXDocument(GUIManager.IngredientsXMLLocation);
 
             foreach (Ingredient ingredient in ingredients)
             {

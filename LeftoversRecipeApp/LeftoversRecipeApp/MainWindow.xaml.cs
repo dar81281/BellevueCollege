@@ -24,7 +24,7 @@ namespace LeftoversRecipeApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        RecipesContext context = new RecipesContext();
+        GUIManager context;
         public MainWindow()
         {
             InitializeComponent();
@@ -36,7 +36,7 @@ namespace LeftoversRecipeApp
             try
             {
                 //Turn off unused controls, will be activated by selecting recipes
-                
+                context = new GUIManager();
                 titleLabel.Content = "Please select a recipe from the list.";
                 errorLabel.Content = "";
                 yieldGUILabel.IsEnabled = false;
@@ -54,7 +54,7 @@ namespace LeftoversRecipeApp
                 ingredientsLabel.IsEnabled = false;
                 ingredientsListBox.IsEnabled = false;
                 //Setup database and listbox
-                Database.SetInitializer<RecipesContext>(new RecipesContextInitializer());
+                //Database.SetInitializer<RecipesContext>(new RecipesContextInitializer());
                 Recipe[] recipes = (from r in context.Recipes
                                     orderby r.Title
                                     select r).ToArray();
