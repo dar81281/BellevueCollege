@@ -24,7 +24,9 @@ namespace LeftoversRecipeApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private bool exitButtonClicked = false;
         GUIManager context;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -105,6 +107,25 @@ namespace LeftoversRecipeApp
             {
                 errorLabel.Content = ex.ToString();
                 errorLabel.IsEnabled = true;
+            }
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            exitButtonClicked = true;
+            this.Close();
+        }
+
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            if (exitButtonClicked)
+            {
+                base.OnClosing(e);
+            }
+            else
+            {
+                errorLabel.Content = "Please use the exit button to close the application";
+                e.Cancel = true;
             }
         }
 

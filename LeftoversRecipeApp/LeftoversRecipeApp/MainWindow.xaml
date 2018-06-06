@@ -27,6 +27,6 @@
         <Label x:Name="typeGUILabel" Content="Recipe Type:" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="1206,49,0,0" VerticalAlignment="Top"/>
         <Label x:Name="recipeTypeLabel" Content="Defalt Type" FontSize="24" FontStyle="Italic" HorizontalAlignment="Left" Margin="1206,75,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnRefresh" Content="Refresh" HorizontalAlignment="Left" FontSize="24" FontWeight="Bold" Margin="1213,382,0,276" VerticalAlignment="Center" Width="144" Height="40" ToolTip="Clears on-screen information" Click="btnRefresh_Click"/>
-
+        <Button x:Name="btnExit" Content="E_xit"  HorizontalAlignment="Left" Margin="1366,638,0,0" VerticalAlignment="Top" Width="100" Height="50" Click="btnExit_Click"/>
     </Grid>
 </Window>
