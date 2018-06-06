@@ -49,8 +49,8 @@ namespace LeftoversRecipeApp
             }
             catch ( Exception ex)
             {
-                errorLabel.Content = ex.ToString();
-                errorLabel.IsEnabled = true;
+                var baseexception = ex.GetBaseException();
+                errorLabel.Content = baseexception.Message;
             }
         }
 
@@ -105,8 +105,9 @@ namespace LeftoversRecipeApp
             }
             catch (Exception ex)
             {
-                errorLabel.Content = ex.ToString();
-                errorLabel.IsEnabled = true;
+                
+                var baseexception = ex.GetBaseException();
+                errorLabel.Content = baseexception.Message;
             }
         }
 
