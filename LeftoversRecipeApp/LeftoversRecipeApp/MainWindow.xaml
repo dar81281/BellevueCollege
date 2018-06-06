@@ -26,6 +26,7 @@
         <Label x:Name="commentLabel" Content="Comments:" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="824,340,0,0" VerticalAlignment="Top"/>
         <Label x:Name="typeGUILabel" Content="Recipe Type:" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="1206,49,0,0" VerticalAlignment="Top"/>
         <Label x:Name="recipeTypeLabel" Content="Defalt Type" FontSize="24" FontStyle="Italic" HorizontalAlignment="Left" Margin="1206,75,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnExit" Content="E_xit"  HorizontalAlignment="Left" Margin="1366,638,0,0" VerticalAlignment="Top" Width="100" Height="50" Click="btnExit_Click"/>
 
     </Grid>
 </Window>
