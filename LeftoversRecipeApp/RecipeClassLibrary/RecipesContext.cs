@@ -65,7 +65,7 @@ namespace RecipeClassLibrary
                         select new XElement("Recipe",
                                new XElement("RecipeID", r.RecipeID),
                                new XElement("Title", r.Title),
-                               new XElement("RecipeType", r.RecipeID),
+                               new XElement("RecipeType", r.RecipeType),
                                r.ServingSize == null ? null :
                                new XElement("ServingSize", r.ServingSize),
                                r.Yield == null ? null :
