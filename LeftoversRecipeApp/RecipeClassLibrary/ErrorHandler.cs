@@ -8,6 +8,9 @@ namespace RecipeClassLibrary
 {
     public class ErrorHandler : Exception
     {
-
+        public Exception GetInnerException(Exception e)
+        {
+                return e.GetBaseException();          
+        }
     }
 }
