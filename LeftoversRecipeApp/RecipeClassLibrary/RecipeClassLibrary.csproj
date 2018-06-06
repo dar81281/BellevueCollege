@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ErrorHandler.cs" />
     <Compile Include="GUIManager.cs" />
     <Compile Include="Ingredient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
