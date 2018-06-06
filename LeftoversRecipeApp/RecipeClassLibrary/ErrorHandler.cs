@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RecipeClassLibrary
 {
-    public class ErrorHandler
+    public class ErrorHandler : Exception
     {
 
     }
