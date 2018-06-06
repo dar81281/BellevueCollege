@@ -180,6 +180,7 @@ namespace LeftoversRecipeApp
             }
             else
             {
+                errorLabel.Content = "Please use the exit button to close the application";
                 e.Cancel = true;
             }
         }
