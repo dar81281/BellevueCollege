@@ -184,6 +184,22 @@ namespace LeftoversRecipeApp
                 errorLabel.Content = "Please use the exit button to close the application";
                 e.Cancel = true;
             }
+
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            //Clear List and Text Boxes
+            recipeListBox.SelectedItem = null;
+            ingredientsListBox.DataContext = null;
+            ingredientsListBox.Items.Refresh();
+            directionsTextBox.Clear();
+            commentTextBox.Clear();
+            servingSizeTextBox.Clear();
+
+            //Clear Labels 
+         
+            recipeTypeLabel.Content = "";
+            yieldLabel.Content = "";
+            errorLabel.Content = "";
         }
     }
 }

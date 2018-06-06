@@ -9,7 +9,7 @@
         Closed="Window_Closed"
         Background="DarkGray"
         Title="Cooking with Leftovers" Height="728.709" Width="1483.71">
-    <Grid>
+    <Grid x:Name="grid">
         <Label x:Name="recipeLabel" Content="Recipes" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,22,0,0"/>
         <ListBox x:Name="recipeListBox" SelectionChanged="recipeListBox_SelectionChanged" HorizontalAlignment="Left" Height="547" Margin="10,64,0,0" VerticalAlignment="Top" ItemsSource="{Binding}" Width="229"/>
         <Label x:Name="errorLabel" FontSize="24" FontWeight="Bold" Foreground="DarkRed" IsEnabled="False" Content="Error Default" HorizontalAlignment="Left" Margin="10,635,0,0" VerticalAlignment="Top"/>
@@ -27,6 +27,6 @@
         <Label x:Name="typeGUILabel" Content="Recipe Type:" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="1206,49,0,0" VerticalAlignment="Top"/>
         <Label x:Name="recipeTypeLabel" Content="Defalt Type" FontSize="24" FontStyle="Italic" HorizontalAlignment="Left" Margin="1206,75,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnExit" Content="E_xit"  HorizontalAlignment="Left" Margin="1366,638,0,0" VerticalAlignment="Top" Width="100" Height="50" Click="btnExit_Click"/>
-
+        <Button x:Name="btnRefresh" Content="Refresh" HorizontalAlignment="Left" Margin="1322,534,0,0" VerticalAlignment="Center" Width="144" Height="40" ToolTip="Clears on-screen information" Click="btnRefresh_Click"/>
     </Grid>
 </Window>
