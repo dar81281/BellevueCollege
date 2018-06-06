@@ -17,7 +17,7 @@ namespace RecipesTester
         {
             RecipesContext context = new RecipesContext();
             int dbRecipesRows = context.Recipes.Count();
-            int xmlRecipesDescendants = RecipesContextInitializer.GetRecipeDataFromXDocument(RecipesContext.GetXMLRecipesPath("Recipes.xml")).Count;
+            int xmlRecipesDescendants = RecipesContextInitializer.GetRecipeDataFromXDocument(XMLFileFinder.GetXMLRecipesPath()).Count;
 
             Assert.AreEqual(dbRecipesRows, xmlRecipesDescendants);
         }
