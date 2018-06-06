@@ -37,24 +37,9 @@ namespace LeftoversRecipeApp
             {
                 //Turn off unused controls, will be activated by selecting recipes
                 context = new GUIManager();
+                ClearFields();
                 titleLabel.Content = "Please select a recipe from the list.";
-                errorLabel.Content = "";
-                yieldGUILabel.IsEnabled = false;
-                yieldLabel.IsEnabled = false;
-                yieldLabel.Content = "";
-                servingSizeLabel.IsEnabled = false;
-                servingSizeTextBox.IsEnabled = false;
-                commentTextBox.IsEnabled = false;
-                commentLabel.IsEnabled = false;
-                recipeTypeLabel.IsEnabled = false;
-                recipeTypeLabel.Content = "";
-                typeGUILabel.IsEnabled = false;
-                directionsLabel.IsEnabled = false;
-                directionsTextBox.IsEnabled = false;
-                ingredientsLabel.IsEnabled = false;
-                ingredientsListBox.IsEnabled = false;
                 //Setup database and listbox
-                //Database.SetInitializer<RecipesContext>(new RecipesContextInitializer());
                 Recipe[] recipes = (from r in context.Recipes
                                     orderby r.Title
                                     select r).ToArray();
@@ -69,38 +54,7 @@ namespace LeftoversRecipeApp
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            //saving the recipes
-            //XDocument document = new XDocument(
-            //    new XDeclaration("1.0", "utf-8", "yes"),
-            //        new XComment("Contents of Recipes table in database"),
-            //        new XElement("Recipes",
-            //            from r in context.Recipes
-            //            select new XElement("Recipe",
-            //                   new XElement("RecipeID", r.RecipeID),
-            //                   new XElement("Title", r.Title),
-            //                   new XElement("RecipeType", r.RecipeID),
-            //                   r.ServingSize == null ? null :
-            //                   new XElement("ServingSize", r.ServingSize),
-            //                   r.Yield == null ? null :
-            //                   new XElement("Yield", r.Yield),
-            //                   new XElement("Directions", r.Directions),
-            //                   r.Yield == null ? null :
-            //                   new XElement("Comment", r.Comment))));
-            //document.Save(context.RecipesXMLLocation);
-            //document = new XDocument(
-            //    new XDeclaration("1.0", "utf-8", "yes"),
-            //        new XComment("Contents of the Ingredients table in databse"),
-            //        new XElement("Ingredients",
-            //            from i in context.Ingredients
-            //            select new XElement("Ingredient",
-            //                   new XElement("IngredientID", i.IngredientID),
-            //                   new XElement("RecipeID", i.RecipeID),
-            //                   new XElement("Description", i.Description))));
-            //document.Save(context.IngredientsXMLLocation);
             context.Dispose();
-
-            //RecipesContext close = new RecipesContext();
-            //close.XMLSerializer();
           
         }
 
@@ -108,54 +62,43 @@ namespace LeftoversRecipeApp
         {
             try
             {
-                Recipe recipe = (Recipe)recipeListBox.SelectedItem;
-                titleLabel.IsEnabled = true;
-                titleLabel.Content = recipe.Title;
-                recipeTypeLabel.Content = recipe.RecipeType;
-                recipeTypeLabel.IsEnabled = true;
-                typeGUILabel.IsEnabled = true;
-                directionsLabel.IsEnabled = true;
-                directionsTextBox.Text = recipe.Directions;
-                directionsTextBox.IsEnabled = true;
-                if (recipe.Yield != null)
+                if (recipeListBox.SelectedItem != null)
                 {
-                    yieldGUILabel.IsEnabled = true;
-                    yieldLabel.Content = recipe.Yield;
-                    yieldLabel.IsEnabled = true;
+                    Recipe recipe = (Recipe)recipeListBox.SelectedItem;
+                    ClearFields();
+                    titleLabel.IsEnabled = true;
+                    titleLabel.Content = recipe.Title;
+                    recipeTypeLabel.Content = recipe.RecipeType;
+                    recipeTypeLabel.IsEnabled = true;
+                    typeGUILabel.IsEnabled = true;
+                    directionsLabel.IsEnabled = true;
+                    directionsTextBox.Text = recipe.Directions;
+                    directionsTextBox.IsEnabled = true;
+                    if (recipe.Yield != null)
+                    {
+                        yieldGUILabel.IsEnabled = true;
+                        yieldLabel.Content = recipe.Yield;
+                        yieldLabel.IsEnabled = true;
+                    }
+                    if (recipe.ServingSize != null)
+                    {
+                        servingSizeLabel.IsEnabled = true;
+                        servingSizeTextBox.IsEnabled = true;
+                        servingSizeTextBox.Text = recipe.ServingSize;
+                    }
+                    if (recipe.Comment != null)
+                    {
+                        commentLabel.IsEnabled = true;
+                        commentTextBox.Text = recipe.Comment;
+                        commentTextBox.IsEnabled = true;
+                    }
+                    //Populate ingredients
+                    ingredientsLabel.IsEnabled = true;
+                    ingredientsListBox.IsEnabled = true;
+                    ingredientsListBox.DataContext = (from i in context.Ingredients
+                                                      where i.RecipeID == recipe.RecipeID
+                                                      select i.Description).ToArray();
                 }
-                else
-                {
-                    yieldGUILabel.IsEnabled = false;
-                    yieldLabel.Content = "";
-                }
-                if (recipe.ServingSize != null)
-                {
-                    servingSizeLabel.IsEnabled = true;
-                    servingSizeTextBox.IsEnabled = true;
-                    servingSizeTextBox.Text = recipe.ServingSize;
-                }
-                else
-                {
-                    servingSizeLabel.IsEnabled = false;
-                    servingSizeTextBox.Text = "";
-                }
-                if (recipe.Comment != null)
-                {
-                    commentLabel.IsEnabled = true;
-                    commentTextBox.Text = recipe.Comment;
-                    commentTextBox.IsEnabled = true;
-                }
-                else
-                {
-                    commentLabel.IsEnabled = false;
-                    commentTextBox.Text = "";
-                }
-                //Populate ingredients
-                ingredientsLabel.IsEnabled = true;
-                ingredientsListBox.IsEnabled = true;
-                ingredientsListBox.DataContext = (from i in context.Ingredients
-                                                  where i.RecipeID == recipe.RecipeID
-                                                  select i.Description).ToArray();
                 
             }
             catch (Exception ex)
@@ -167,20 +110,31 @@ namespace LeftoversRecipeApp
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
-            //Clear List and Text Boxes
+            
             recipeListBox.SelectedItem = null;
+            ClearFields();
+
+        }
+        private void ClearFields()
+        {
+            //Clear List and Text Boxes
             ingredientsListBox.DataContext = null;
-            ingredientsListBox.Items.Refresh();
+
             directionsTextBox.Clear();
             commentTextBox.Clear();
             servingSizeTextBox.Clear();
 
+            //Gray out labels
+            servingSizeLabel.IsEnabled = false;
+            yieldGUILabel.IsEnabled = false;
+            commentLabel.IsEnabled = false;
+
             //Clear Labels 
-         
+
+            titleLabel.Content = "";
             recipeTypeLabel.Content = "";
             yieldLabel.Content = "";
             errorLabel.Content = "";
-
         }
     }
 }
