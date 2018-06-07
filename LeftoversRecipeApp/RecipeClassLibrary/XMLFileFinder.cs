@@ -15,6 +15,11 @@ namespace RecipeClassLibrary
         //Methods to find the wayward xml files
         public static string GetXMLRecipesPath(string nameRecipes = RECIPESXML)
         {
+            if (File.Exists(nameRecipes))
+            {
+                return nameRecipes;
+            }
+
             string root;
             try
             {
@@ -22,9 +27,12 @@ namespace RecipeClassLibrary
             }
             catch
             {
-                root = @"..\..\..\..\..\..\..\";
+                root = @"..\..\..\..\..\";
             }
-            string file = Directory.GetFiles(root, nameRecipes, SearchOption.AllDirectories).FirstOrDefault();
+            string file;
+
+            file = Directory.GetFiles(root, nameRecipes, SearchOption.AllDirectories).FirstOrDefault();
+
             if (file == null)
             {
                 file = RECIPESXML;
@@ -33,6 +41,11 @@ namespace RecipeClassLibrary
         }
         public static string GetXMLIngredientsPaths(string nameIngredient = INGREDIENTSXML)
         {
+            if (File.Exists(nameIngredient))
+            {
+                return nameIngredient;
+            }
+
             string root;
             try
             {
@@ -40,9 +53,12 @@ namespace RecipeClassLibrary
             }
             catch
             {
-                root = @"..\..\..\..\..\..\..\";
+                root = @"..\..\..\..\..\";
             }
-            string file = Directory.GetFiles(root, nameIngredient, SearchOption.AllDirectories).FirstOrDefault();
+            string file;
+            
+            file = Directory.GetFiles(root, nameIngredient, SearchOption.AllDirectories).FirstOrDefault();
+
             if (file == null)
             {
                 file = INGREDIENTSXML;

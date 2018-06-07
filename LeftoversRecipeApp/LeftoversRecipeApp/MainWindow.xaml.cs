@@ -56,7 +56,10 @@ namespace LeftoversRecipeApp
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            context.Dispose();
+            if (context != null)
+            {
+                context.Dispose();
+            }
           
         }
 
