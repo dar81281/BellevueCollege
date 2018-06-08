@@ -17,6 +17,8 @@ namespace RecipeClassLibrary
 
         public GUIManager()
         {
+            RecipesXMLLocation = XMLFileFinder.GetXMLRecipesPath();
+            IngredientsXMLLocation = XMLFileFinder.GetXMLIngredientsPaths();
             Database.SetInitializer<RecipesContext>(new RecipesContextInitializer());
             using (RecipesContext context = new RecipesContext())
             {
@@ -24,9 +26,6 @@ namespace RecipeClassLibrary
                            select r).ToList();
                 Ingredients = (from Ingredient i in context.Ingredients
                                select i).ToList();
-
-                RecipesXMLLocation = XMLFileFinder.GetXMLRecipesPath();
-                IngredientsXMLLocation = XMLFileFinder.GetXMLIngredientsPaths();
             }
         }
 
