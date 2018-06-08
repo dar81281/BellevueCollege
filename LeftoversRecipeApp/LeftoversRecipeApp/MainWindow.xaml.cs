@@ -42,9 +42,7 @@ namespace LeftoversRecipeApp
                 ClearFields();
                 titleLabel.Content = "Please select a recipe from the list.";
                 //Setup database and listbox
-                Recipe[] recipes = (from r in context.Recipes
-                                    orderby r.Title
-                                    select r).ToArray();
+                Recipe[] recipes = getRecipes();
                 recipeListBox.DataContext = recipes;
             }
             catch ( Exception ex)
@@ -52,6 +50,13 @@ namespace LeftoversRecipeApp
                 var baseexception = ex.GetBaseException();
                 errorLabel.Content = baseexception.Message;
             }
+        }
+        private Recipe[] getRecipes()
+        {
+            Recipe[] recipes = (from r in context.Recipes
+                                orderby r.Title
+                                select r).ToArray();
+            return recipes;
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -135,10 +140,15 @@ namespace LeftoversRecipeApp
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
-            
+            //Remove Selection in the recipe listbox
             recipeListBox.SelectedItem = null;
-            ClearFields();
 
+            //Call getRecipes method and reload the recipe listbox
+            Recipe[] recipes = getRecipes();
+            recipeListBox.DataContext = recipes;
+
+            //Call ClearFields method clear all other contents
+            ClearFields();
         }
         private void ClearFields()
         {
