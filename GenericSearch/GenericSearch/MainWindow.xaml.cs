@@ -49,5 +49,20 @@ namespace GenericSearch
         {
             DialogResult = false;
         }
+
+        public bool SearchStrings(string[] dataSource, string[] queries)
+        {
+            foreach (string str in dataSource)
+            {
+                foreach (string q in queries)
+                {
+                    if (str.Contains(q))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
     }
 }

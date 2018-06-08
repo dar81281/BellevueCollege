@@ -29,6 +29,33 @@ namespace RecipeClassLibrary
             }
         }
 
+        public string[] RecipeFields()
+        {
+            List<string> stringList = new List<string>();
+            string[] strings;
+            foreach (Recipe r in Recipes)
+            {
+                stringList.Add(r.Title);
+                stringList.Add(r.RecipeType);
+                stringList.Add(r.Directions);
+
+                if (r.Yield != null)
+                {
+                    stringList.Add(r.Yield);
+                }
+                if (r.Comment != null)
+                {
+                    stringList.Add(r.Comment);
+                }
+                if (r.ServingSize != null)
+                {
+                    stringList.Add(r.ServingSize);
+                }
+            }
+            strings = stringList.ToArray();
+            return strings;
+        }
+
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
 
