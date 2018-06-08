@@ -71,14 +71,9 @@ namespace LeftoversRecipeApp
                 {
                     Recipe recipe = (Recipe)recipeListBox.SelectedItem;
                     ClearFields();
-                    titleLabel.IsEnabled = true;
                     titleLabel.Content = recipe.Title;
                     recipeTypeLabel.Content = recipe.RecipeType;
-                    recipeTypeLabel.IsEnabled = true;
-                    typeGUILabel.IsEnabled = true;
-                    directionsLabel.IsEnabled = true;
                     directionsTextBox.Text = recipe.Directions;
-                    directionsTextBox.IsEnabled = true;
                     if (recipe.Yield != null)
                     {
                         yieldGUILabel.IsEnabled = true;
@@ -98,8 +93,6 @@ namespace LeftoversRecipeApp
                         commentTextBox.IsEnabled = true;
                     }
                     //Populate ingredients
-                    ingredientsLabel.IsEnabled = true;
-                    ingredientsListBox.IsEnabled = true;
                     ingredientsListBox.DataContext = (from i in context.Ingredients
                                                       where i.RecipeID == recipe.RecipeID
                                                       select i.Description).ToArray();
