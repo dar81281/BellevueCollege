@@ -20,7 +20,15 @@ namespace GenericSearch
     /// </summary>
     public partial class MainWindow : Window
     {
-        public string word { get; set; }
+        public string[] SearchTerms
+        {
+
+            get {
+                char separator = ',';
+                string[] test = txtSearchWords.Text.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                return test;  }
+            set { ; }
+        }
         public MainWindow()
         {
             InitializeComponent();
@@ -28,10 +36,9 @@ namespace GenericSearch
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            //string wordString = txtSearchWords.Text;
-            //string[] wordArray = wordString.Split(',');
-            string helloWord = "Hello";
-            word = helloWord;
+            string wordString = txtSearchWords.Text;
+            string[] wordArray = wordString.Split(',');
+
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
