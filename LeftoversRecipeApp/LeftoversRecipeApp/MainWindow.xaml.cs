@@ -28,6 +28,7 @@ namespace LeftoversRecipeApp
     public partial class MainWindow : Window
     {
         private bool exitButtonClicked = false;
+        private string[] searchTerms;
         GUIManager context;
 
         public MainWindow()
@@ -178,7 +179,7 @@ namespace LeftoversRecipeApp
             GenericSearch.MainWindow dialog = new GenericSearch.MainWindow();
             if (dialog.ShowDialog() ==true)
             {
-                errorLabel.Content = dialog;
+                searchTerms = dialog.SearchTerms;
             }
         }
     }
