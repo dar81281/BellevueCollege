@@ -47,6 +47,11 @@ namespace LeftoversRecipeApp
                                     select r).ToArray();
                 recipeListBox.DataContext = recipes;
             }
+            catch (AccessViolationException ex)
+            {
+                var baseexception = ex.GetBaseException();
+                errorLabel.Content = "Attempted to search a protected file: " + baseexception.Message;
+            }
             catch ( Exception ex)
             {
                 var baseexception = ex.GetBaseException();
