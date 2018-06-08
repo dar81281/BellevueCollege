@@ -16,7 +16,9 @@ using System.Data.Entity;
 using RecipeClassLibrary;
 using System.Xml.Linq;
 using System.Xml;
-using GenericSearch; 
+using GenericSearch;
+
+
 
 namespace LeftoversRecipeApp
 {
@@ -173,7 +175,11 @@ namespace LeftoversRecipeApp
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            
+            GenericSearch.MainWindow dialog = new GenericSearch.MainWindow();
+            if (dialog.ShowDialog() ==true)
+            {
+                errorLabel.Content = dialog;
+            }
         }
     }
 }

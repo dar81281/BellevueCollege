@@ -20,6 +20,7 @@ namespace GenericSearch
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string word { get; set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -27,12 +28,15 @@ namespace GenericSearch
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-
+            //string wordString = txtSearchWords.Text;
+            //string[] wordArray = wordString.Split(',');
+            string helloWord = "Hello";
+            word = helloWord;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            DialogResult = false;
         }
     }
 }
