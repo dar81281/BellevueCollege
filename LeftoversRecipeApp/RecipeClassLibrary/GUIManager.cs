@@ -29,31 +29,39 @@ namespace RecipeClassLibrary
             }
         }
 
-        public string[] RecipeFields()
+        public string[] RecipeFields(Recipe r)
         {
             List<string> stringList = new List<string>();
             string[] strings;
-            foreach (Recipe r in Recipes)
-            {
-                stringList.Add(r.Title);
-                stringList.Add(r.RecipeType);
-                stringList.Add(r.Directions);
 
-                if (r.Yield != null)
-                {
-                    stringList.Add(r.Yield);
-                }
-                if (r.Comment != null)
-                {
-                    stringList.Add(r.Comment);
-                }
-                if (r.ServingSize != null)
-                {
-                    stringList.Add(r.ServingSize);
-                }
+            stringList.Add(r.Title);
+            stringList.Add(r.RecipeType);
+            stringList.Add(r.Directions);
+
+            if (r.Yield != null)
+            {
+                stringList.Add(r.Yield);
             }
+            if (r.Comment != null)
+            {
+                stringList.Add(r.Comment);
+            }
+            if (r.ServingSize != null)
+            {
+                stringList.Add(r.ServingSize);
+            }
+
             strings = stringList.ToArray();
             return strings;
+        }
+
+        public List<Recipe> SearchRecipes()
+        {
+            List<Recipe> searchResults = new List<Recipe>();
+            foreach (Recipe r in Recipes)
+            {
+                if (SearchStrings(RecipeFields(r))
+            }
         }
 
         #region IDisposable Support
