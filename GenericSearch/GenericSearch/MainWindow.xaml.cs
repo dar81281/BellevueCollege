@@ -24,7 +24,16 @@ namespace GenericSearch
 
         public string[] SearchTerms
         {        
-        get { return txtSearchWords.Text.Split(separator, StringSplitOptions.RemoveEmptyEntries);  }       
+            get
+            {
+                string[] words = txtSearchWords.Text.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i < words.Length; i++)
+                {
+                    words[i] = words[i].Trim();
+                    i++;
+                }
+                return words;
+            }       
         }
         public MainWindow()
         {
