@@ -16,6 +16,7 @@ using System.Data.Entity;
 using RecipeClassLibrary;
 using System.Xml.Linq;
 using System.Xml;
+using GenericSearch; 
 
 namespace LeftoversRecipeApp
 {
@@ -158,6 +159,11 @@ namespace LeftoversRecipeApp
             recipeTypeLabel.Content = "";
             yieldLabel.Content = "";
             errorLabel.Content = "";
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

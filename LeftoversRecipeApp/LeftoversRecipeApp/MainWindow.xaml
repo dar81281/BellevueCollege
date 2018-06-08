@@ -28,6 +28,6 @@
         <Label x:Name="recipeTypeLabel" Content="Defalt Type" FontSize="24" FontStyle="Italic" HorizontalAlignment="Left" Margin="1206,75,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnRefresh" Content="Refresh" HorizontalAlignment="Left" FontSize="24" FontWeight="Bold" Margin="1213,485,0,0" VerticalAlignment="Top" Width="144" Height="50" ToolTip="Clears on-screen information" Click="btnRefresh_Click"/>
         <Button x:Name="btnExit" Content="E_xit"  HorizontalAlignment="Left" FontSize="24" FontWeight="Bold" Margin="1213,556,0,0" VerticalAlignment="Top" Width="144" Height="50" Click="btnExit_Click"/>
-        <Button x:Name="btnSearch" Content="Search" HorizontalAlignment="Left" Margin="1213,408,0,0" VerticalAlignment="Top" Width="144" Height="50" FontSize="24" FontWeight="Bold"/>
+        <Button x:Name="btnSearch" Content="Search" HorizontalAlignment="Left" Margin="1213,408,0,0" VerticalAlignment="Top" Width="144" Height="50" FontSize="24" FontWeight="Bold" Click="btnSearch_Click"/>
     </Grid>
 </Window>
