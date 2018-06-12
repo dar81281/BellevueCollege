@@ -34,6 +34,7 @@ namespace RecipeClassLibrary
             List<string> stringList = new List<string>();
             string[] strings;
 
+            //Get the string from the recipe and add them to the array
             stringList.Add(r.Title);
             stringList.Add(r.RecipeType);
             stringList.Add(r.Directions);
@@ -49,6 +50,18 @@ namespace RecipeClassLibrary
             if (r.ServingSize != null)
             {
                 stringList.Add(r.ServingSize);
+            }
+            //Get the ingredients
+            List<Ingredient> ingredients = (from Ingredient i in Ingredients
+                                            where i.RecipeID == r.RecipeID
+                                            select i).ToList();
+            if (ingredients.Count > 0)
+            {
+                foreach(Ingredient i in ingredients)
+                {
+                    string description = i.Description;
+                    stringList.Add(description);
+                }
             }
 
             strings = stringList.ToArray();
