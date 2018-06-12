@@ -176,34 +176,43 @@ namespace LeftoversRecipeApp
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            GenericSearch.MainWindow dialog = new GenericSearch.MainWindow();
-            if (dialog.ShowDialog() ==true)
+            try
             {
-                searchTerms = dialog.SearchTerms;
-                ClearFields();
-                //Take a list of recipes, and for each create an array of string from its fields (and ingredients), then search it using the searchTerms,
-                //if the result is true than add it to a List and set the recipes listbox datacontext to the new list.
-                List<Recipe> foundRecipes = new List<Recipe>();
-                foreach (Recipe r in context.Recipes)
+                GenericSearch.MainWindow dialog = new GenericSearch.MainWindow();
+                if (dialog.ShowDialog() == true)
                 {
-                    string[] recipeFields = context.RecipeFields(r);
-                    if(StringSearcher.StringArrayAndSearch(recipeFields, searchTerms))
+                    searchTerms = dialog.SearchTerms;
+                    ClearFields();
+                    //Take a list of recipes, and for each create an array of string from its fields (and ingredients), then search it using the searchTerms,
+                    //if the result is true than add it to a List and set the recipes listbox datacontext to the new list.
+                    List<Recipe> foundRecipes = new List<Recipe>();
+                    foreach (Recipe r in context.Recipes)
                     {
-                        foundRecipes.Add(r);
+                        string[] recipeFields = context.RecipeFields(r);
+                        if (StringSearcher.StringArrayAndSearch(recipeFields, searchTerms))
+                        {
+                            foundRecipes.Add(r);
+                        }
+                    }
+
+                    //If no recipes were found then inform user in the error lable.
+                    if (foundRecipes.Count > 0)
+                    {
+                        foundRecipes.Sort();
+                        recipeListBox.DataContext = foundRecipes;
+                    }
+                    else
+                    {
+                        recipeListBox.DataContext = foundRecipes;
+                        errorLabel.Content = "No recipes were found matching your requirements.";
                     }
                 }
+            }
+            catch (Exception ex)
+            {
 
-                //If no recipes were found then inform user in the error lable.
-                if(foundRecipes.Count > 0)
-                {
-                    foundRecipes.Sort();
-                    recipeListBox.DataContext = foundRecipes;
-                }
-                else
-                {
-                    recipeListBox.DataContext = foundRecipes;
-                    errorLabel.Content = "No recipes were found matching your requirements.";
-                }
+                var baseexception = ex.GetBaseException();
+                errorLabel.Content = baseexception.Message;
             }
         }
     }

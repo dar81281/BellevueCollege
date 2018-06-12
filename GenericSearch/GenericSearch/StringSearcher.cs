@@ -37,23 +37,41 @@ namespace GenericSearch
         /// <returns></returns>
         public static bool StringArrayAndSearch(string[] dataSource, string[] queries)
         {
-            bool queryMatch = false;
-            foreach (string str in dataSource)
+            //bool queryMatch = false;
+            //foreach (string str in dataSource)
+            //{
+            //    queryMatch = false;
+            //    foreach (string q in queries)
+            //    {
+            //        if (str.ToLower().Contains(q.ToLower().Trim()))
+            //        {
+            //            queryMatch = true;
+            //        }
+            //    }
+            //    if (queryMatch == false)
+            //    {
+            //        return false;
+            //    }
+            //}
+            //return queryMatch;
+            foreach (string q in queries)
             {
-                queryMatch = false;
-                foreach (string q in queries)
+                bool MatchFound = false;
+                foreach (string str in dataSource)
                 {
-                    if (str.ToLower().Contains(q.ToLower().Trim()))
+
+                    if (str.ToLower().Contains(q.Trim().ToLower()))
                     {
-                        queryMatch = true;
+                        MatchFound = true;
+                        break;
                     }
                 }
-                if (queryMatch == false)
+                if (MatchFound == false)
                 {
                     return false;
                 }
             }
-            return queryMatch;
+            return true;
         }
     }
 }
