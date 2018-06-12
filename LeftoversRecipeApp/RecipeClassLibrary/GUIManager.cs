@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GenericSearch;
 
 namespace RecipeClassLibrary
 {
@@ -68,14 +69,7 @@ namespace RecipeClassLibrary
             return strings;
         }
 
-        public List<Recipe> SearchRecipes()
-        {
-            List<Recipe> searchResults = new List<Recipe>();
-            foreach (Recipe r in Recipes)
-            {
-                if (SearchStrings(RecipeFields(r))
-            }
-        }
+        
 
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
