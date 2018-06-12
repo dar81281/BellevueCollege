@@ -37,9 +37,10 @@ namespace GenericSearch
         /// <returns></returns>
         public static bool StringArrayAndSearch(string[] dataSource, string[] queries)
         {
+            bool queryMatch = false;
             foreach (string str in dataSource)
             {
-                bool queryMatch = false;
+                queryMatch = false;
                 foreach (string q in queries)
                 {
                     if (str.ToLower().Contains(q.ToLower().Trim()))
@@ -52,7 +53,7 @@ namespace GenericSearch
                     return false;
                 }
             }
-            return true;
+            return queryMatch;
         }
     }
 }
