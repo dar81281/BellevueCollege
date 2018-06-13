@@ -25,9 +25,11 @@ namespace RecipeClassLibrary
             {
                 List<Recipe> rawRecipes = (from Recipe r in context.Recipes
                            select r).ToList();
+                Recipes = new List<Recipe>();
                 foreach (Recipe r in rawRecipes)
                 {
-                    Recipes.Add(CreateRecipe(r));
+                    Recipe newRecipe = CreateRecipe(r);
+                    Recipes.Add(newRecipe);
                 }
                 Ingredients = (from Ingredient i in context.Ingredients
                                select i).ToList();
