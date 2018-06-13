@@ -23,8 +23,12 @@ namespace RecipeClassLibrary
             Database.SetInitializer<RecipesContext>(new RecipesContextInitializer());
             using (RecipesContext context = new RecipesContext())
             {
-                Recipes = (from Recipe r in context.Recipes
+                List<Recipe> rawRecipes = (from Recipe r in context.Recipes
                            select r).ToList();
+                foreach (Recipe r in rawRecipes)
+                {
+                    Recipes.Add(CreateRecipe(r));
+                }
                 Ingredients = (from Ingredient i in context.Ingredients
                                select i).ToList();
             }
@@ -69,6 +73,54 @@ namespace RecipeClassLibrary
             return strings;
         }
 
+        private Recipe CreateRecipe(Recipe r)
+        {
+            switch (r.RecipeType)
+            {
+                case "Meal Item":
+                    MealItem m = new MealItem {
+                        RecipeID = r.RecipeID,
+                        RecipeType = r.RecipeType,
+                        Title = r.Title,
+                        Directions = r.Directions};
+                    if (r.Comment != null)
+                    {
+                        m.Comment = r.Comment;
+                    }
+                    if (r.Yield != null)
+                    {
+                        m.Yield = r.Yield;
+                    }
+                    if (r.ServingSize != null)
+                    {
+                        m.ServingSize = r.ServingSize;
+                    }
+                    return m;
+                case "Dessert":
+                    Dessert d = new Dessert
+                    {
+                        RecipeID = r.RecipeID,
+                        RecipeType = r.RecipeType,
+                        ServingSize = r.ServingSize,
+                        Title = r.Title,
+                        Directions = r.Directions };
+                    if (r.Comment != null)
+                    {
+                        d.Comment = r.Comment;
+                    }
+                    if (r.Yield != null)
+                    {
+                        d.Yield = r.Yield;
+                    }
+                    if (r.ServingSize != null)
+                    {
+                        d.ServingSize = r.ServingSize;
+                    }
+                    return d;
+                default:
+                    return r;
+            }
+        }
         
 
         #region IDisposable Support

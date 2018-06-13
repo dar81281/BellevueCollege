@@ -69,10 +69,6 @@
       <Project>{d3185455-6a47-4857-bcfa-630c42e9101e}</Project>
       <Name>LeftoversRecipeApp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RecipeClassLibrary\RecipeClassLibrary.csproj">
-      <Project>{39a96e87-4ef9-46a5-ae2e-0d0626fead4b}</Project>
-      <Name>RecipeClassLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
