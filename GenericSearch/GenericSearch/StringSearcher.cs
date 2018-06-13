@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
+[assembly:InternalsVisibleTo("GenericSearchUnitTest")]
 namespace GenericSearch
 {
     public static class StringSearcher
@@ -37,17 +39,20 @@ namespace GenericSearch
         /// <returns></returns>
         public static bool StringArrayAndSearch(string[] dataSource, string[] queries)
         {
-            foreach (string str in dataSource)
+            
+            foreach (string q in queries)
             {
-                bool queryMatch = false;
-                foreach (string q in queries)
+                bool MatchFound = false;
+                foreach (string str in dataSource)
                 {
-                    if (str.ToLower().Contains(q.ToLower().Trim()))
+
+                    if (str.ToLower().Contains(q.Trim().ToLower()))
                     {
-                        queryMatch = true;
+                        MatchFound = true;
+                        break;
                     }
                 }
-                if (queryMatch == false)
+                if (MatchFound == false)
                 {
                     return false;
                 }
