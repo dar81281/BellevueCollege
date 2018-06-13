@@ -27,12 +27,22 @@ namespace GenericSearch
             get
             {
                 string[] words = txtSearchWords.Text.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-                for (int i = 0; i < words.Length; i++)
+                //for (int i = 0; i < words.Length; i++)
+                //{
+                //    words[i] = words[i].Trim();
+                //    i++;
+                //}
+                List<string> list = new List<string>();
+                foreach (string word in words)
                 {
-                    words[i] = words[i].Trim();
-                    i++;
+                    if (word != " ")
+                    {
+                        list.Add(word.Trim());
+                    }
                 }
-                return words;
+
+                string[] words1 = list.ToArray();
+                return words1;
             }       
         }
         public MainWindow()
