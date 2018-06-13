@@ -181,6 +181,7 @@ namespace LeftoversRecipeApp
                 GenericSearch.MainWindow dialog = new GenericSearch.MainWindow();
                 if (dialog.ShowDialog() == true)
                 {
+                    recipeListBox.SelectedItem = null;
                     searchTerms = dialog.SearchTerms;
                     ClearFields();
                     //Take a list of recipes, and for each create an array of string from its fields (and ingredients), then search it using the searchTerms,
