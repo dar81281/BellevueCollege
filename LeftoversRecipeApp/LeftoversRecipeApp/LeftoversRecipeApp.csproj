@@ -70,6 +70,10 @@
     </ApplicationDefinition>
     <Compile Include="AddRecipeDialog.xaml.cs" />
     <Compile Include="StartupClass.cs" />
+    <Page Include="AddRecipeDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
