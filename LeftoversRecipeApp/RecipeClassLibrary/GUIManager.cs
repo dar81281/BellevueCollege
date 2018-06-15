@@ -148,6 +148,18 @@ namespace RecipeClassLibrary
             
         }
 
+        public void DeleteRecipe(int x)
+        {
+            using(RecipesContext context = new RecipesContext())
+            {
+                Recipe r = (from Recipe recipe in context.Recipes
+                            where recipe.RecipeID == x
+                            select recipe).FirstOrDefault();
+                context.Recipes.Remove(r);
+                context.SaveChanges();
+            }
+        }
+
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
 

@@ -18,7 +18,6 @@ using System.Xml.Linq;
 using System.Xml;
 using GenericSearch;
 using System.Windows.Forms;
-using System.Windows.Automation.Peers;
 
 namespace LeftoversRecipeApp
 {
@@ -276,15 +275,19 @@ namespace LeftoversRecipeApp
 
                 string message = "Are you sure that you want to delete: " + targetedRecipe.ToString();
                 string caption = "Deleting Selected Recipe";
-                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-                DialogResult result;
-
-                // Displays the MessageBox.
-
-                result = System.Windows.Forms.MessageBox.Show(message, caption, buttons);
-                if ()
+                
+                MessageBoxResult result = System.Windows.MessageBox.Show(message,
+                                                          caption,
+                                                          MessageBoxButton.YesNo,
+                                                          MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
                 {
-
+                    context.DeleteRecipe(targetedRecipe.RecipeID);
+                    recipeListBox.SelectedItem = null;
+                    ClearFields();
+                    context.RefreshData();
+                    Recipe[] recipes = getRecipes();
+                    recipeListBox.DataContext = recipes;
                 }
             }
             catch (Exception ex)
@@ -336,7 +339,7 @@ namespace LeftoversRecipeApp
                         try
                         {
                             context.SaveChanges();
-                            btnRefresh.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                            btnRefresh.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Button.ClickEvent));
                         }
                         catch
                         {
