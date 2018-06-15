@@ -304,7 +304,7 @@ namespace LeftoversRecipeApp
 
         }
 
-        private void btnModity_Click(object sender, RoutedEventArgs e)
+        private void btnModify_Click(object sender, RoutedEventArgs e)
         {
             Recipe recipe = new Recipe();
             AddRecipeDialog addDialog = new AddRecipeDialog();
@@ -356,6 +356,62 @@ namespace LeftoversRecipeApp
             }
 
         }
+
+        private void btnCopy_Click(object sender, RoutedEventArgs e)
+        {
+            Recipe recipe = new Recipe();
+            AddRecipeDialog addDialog = new AddRecipeDialog();
+
+            if (recipeListBox.SelectedItem != null)
+            {
+                recipe = (Recipe)recipeListBox.SelectedItem;
+                addDialog.titleTextBox.Text = recipe.Title;
+                addDialog.yeildTextBox.Text = recipe.Yield;
+                addDialog.directionTextBox.Text = recipe.Directions;
+                addDialog.servingSizeTextBox.Text = recipe.ServingSize;
+                addDialog.recipeTypeListBox.SelectedValue = recipe.RecipeType;
+                addDialog.commentTextBox.Text = recipe.Comment;
+
+                bool save = (bool)addDialog.ShowDialog();
+
+                if (save)
+                {
+                    using (RecipesContext context = new RecipesContext())
+                    {
+                        //var query = from title in context.Recipes where title.RecipeID == recipe.RecipeID select title;
+
+                        //foreach (Recipe r in query)
+                        //{
+                        
+                            recipe.Title = addDialog.titleTextBox.Text;
+                            recipe.Yield = addDialog.yeildTextBox.Text;
+                            recipe.Directions = addDialog.directionTextBox.Text;
+                            recipe.ServingSize = addDialog.servingSizeTextBox.Text;
+                            recipe.RecipeType = addDialog.recipeTypeListBox.SelectedValue.ToString();
+                            recipe.Comment = addDialog.commentTextBox.Text;
+                        //}
+                        try
+                        {
+                            context.Recipes.Add(recipe);
+                            context.SaveChanges();
+                            btnRefresh.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Button.ClickEvent));
+                        }
+                        catch
+                        {
+                            errorLabel.Content = "$Failed to copy {addDialog.titleTextBox.Text}";
+                        }
+
+                    }
+                    addDialog.Close();
+                
+            }
+            else
+            {
+                errorLabel.Content = "You must select a recipe before clicking Modify";
+            }
+
+        }
+    }
         //private void AddButton_Click(object sender, RoutedEventArgs e)
         //{
         //    try
