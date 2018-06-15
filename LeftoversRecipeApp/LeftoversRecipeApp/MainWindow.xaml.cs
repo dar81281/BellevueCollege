@@ -201,6 +201,7 @@ namespace LeftoversRecipeApp
                     //If no recipes were found then inform user in the error lable.
                     if (foundRecipes.Count > 0)
                     {
+                        recipeListBox.SelectedItem = null;
                         foundRecipes.Sort();
                         recipeListBox.DataContext = foundRecipes;
                     }
