@@ -48,6 +48,10 @@ namespace LeftoversRecipeApp
                 //Setup database and listbox
                 Recipe[] recipes = getRecipes();
                 recipeListBox.DataContext = recipes;
+
+                //Testing RecipesCollection
+                RecipesCollection rc = new RecipesCollection();
+                
             }
             catch (AccessViolationException ex)
             {
@@ -219,5 +223,24 @@ namespace LeftoversRecipeApp
                 errorLabel.Content = baseexception.Message;
             }
         }
+        //private void AddButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        AddRecipeDialog dialog = new AddRecipeDialog();
+        //        if (dialog.ShowDialog() == true)
+        //        {
+        //            int newRecipeID = RecipeIDBuilder.GetRecipeID(context.Recipes);
+        //            Recipe r = RecipeBuilder.BuildRecipe(dialog.titleTextBox.Text, dialog.directionTextBox.Text, dialog.recipeTypeListBox.SelectedValue.ToString(), newRecipeID, dialog.yeildTextBox.Text, dialog.servingSizeTextBox.Text, dialog.commentTextBox.Text);
+
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        var baseexception = ex.GetBaseException();
+        //        errorLabel.Content = baseexception.Message;
+        //    }
+        //}
     }
 }
