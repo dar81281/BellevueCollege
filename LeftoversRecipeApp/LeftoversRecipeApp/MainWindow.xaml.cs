@@ -17,6 +17,7 @@ using RecipeClassLibrary;
 using System.Xml.Linq;
 using System.Xml;
 using GenericSearch;
+using System.Windows.Forms;
 using System.Windows.Automation.Peers;
 
 namespace LeftoversRecipeApp
@@ -33,7 +34,7 @@ namespace LeftoversRecipeApp
         public MainWindow()
         {
             InitializeComponent();
-            
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -50,14 +51,14 @@ namespace LeftoversRecipeApp
 
                 //Testing RecipesCollection
                 RecipesCollection rc = new RecipesCollection();
-                
+
             }
             catch (AccessViolationException ex)
             {
                 var baseexception = ex.GetBaseException();
                 errorLabel.Content = "Attempted to search a protected file: " + baseexception.Message;
             }
-            catch ( Exception ex)
+            catch (Exception ex)
             {
                 var baseexception = ex.GetBaseException();
                 errorLabel.Content = baseexception.Message;
@@ -77,10 +78,10 @@ namespace LeftoversRecipeApp
             {
                 context.Dispose();
             }
-          
+
         }
 
-    private void recipeListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void recipeListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
@@ -114,11 +115,11 @@ namespace LeftoversRecipeApp
                                                       where i.RecipeID == recipe.RecipeID
                                                       select i.Description).ToArray();
                 }
-                
+
             }
             catch (Exception ex)
             {
-                
+
                 var baseexception = ex.GetBaseException();
                 errorLabel.Content = baseexception.Message;
             }
@@ -222,6 +223,77 @@ namespace LeftoversRecipeApp
                 var baseexception = ex.GetBaseException();
                 errorLabel.Content = baseexception.Message;
             }
+        }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                AddRecipeDialog dialog = new AddRecipeDialog();
+                if (dialog.ShowDialog() == true)
+                {
+                    int newRecipeID = RecipeIDBuilder.GetRecipeID(context.Recipes);
+                    Recipe r = RecipeBuilder.BuildRecipe(dialog.titleTextBox.Text, dialog.directionTextBox.Text,
+                        dialog.recipeTypeListBox.SelectedValue.ToString(), newRecipeID, dialog.yeildTextBox.Text,
+                        dialog.servingSizeTextBox.Text, dialog.commentTextBox.Text);
+
+                    if (string.IsNullOrWhiteSpace(r.Comment))
+                    {
+                        r.Comment = null;
+                    }
+                    if (string.IsNullOrWhiteSpace(r.ServingSize))
+                    {
+                        r.ServingSize = null;
+                    }
+                    if (string.IsNullOrWhiteSpace(r.Yield))
+                    {
+                        r.Yield = null;
+                    }
+
+                    context.AddNewRecipe(r);
+                    recipeListBox.SelectedItem = null;
+                    ClearFields();
+                    context.RefreshData();
+                    Recipe[] recipes = getRecipes();
+                    recipeListBox.DataContext = recipes;
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                var baseexception = ex.GetBaseException();
+                errorLabel.Content = baseexception.Message;
+            }
+        }
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Recipe targetedRecipe = (Recipe)recipeListBox.SelectedItem;
+
+                string message = "Are you sure that you want to delete: " + targetedRecipe.ToString();
+                string caption = "Deleting Selected Recipe";
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult result;
+
+                // Displays the MessageBox.
+
+                result = System.Windows.Forms.MessageBox.Show(message, caption, buttons);
+                if ()
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                var baseexception = ex.GetBaseException();
+                errorLabel.Content = baseexception.Message;
+            }
+
         }
 
         private void directionsTextBox_TextChanged(object sender, TextChangedEventArgs e)
