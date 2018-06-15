@@ -129,6 +129,24 @@ namespace RecipeClassLibrary
             }
         }
 
+        public void AddNewRecipe(Recipe r)
+        {
+            try
+            {
+                using (RecipesContext context = new RecipesContext())
+                {
+                    context.Recipes.Add(r);
+                    context.SaveChanges();
+                }
+
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+            
+        }
 
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
