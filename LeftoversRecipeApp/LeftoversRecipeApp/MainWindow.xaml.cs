@@ -254,9 +254,10 @@ namespace LeftoversRecipeApp
                     recipeListBox.SelectedItem = null;
                     ClearFields();
                     context.RefreshData();
-                    getRecipes();
+                    Recipe[] recipes = getRecipes();
+                    recipeListBox.DataContext = recipes;
 
-                    //focus on the add dialog
+
                 }
             }
             catch (Exception ex)
