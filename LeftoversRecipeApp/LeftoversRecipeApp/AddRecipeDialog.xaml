@@ -15,7 +15,7 @@
         <Label x:Name="directionsLabel" Content="Directions*" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,154,0,0"/>
         <TextBox x:Name="directionTextBox" HorizontalAlignment="Left" Height="201" Margin="10,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="393" FontSize="24"/>
         <Label x:Name="recipeTypeLabel" Content="Recipe Type*" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,402,0,0"/>
-        <ListBox x:Name="recipeTypeListBox" HorizontalAlignment="Left" FontSize="24" Height="77" VerticalAlignment="Top" Width="393" Margin="10,449,0,0" ItemsSource="{Binding}"/>
+        <ListBox x:Name="recipeTypeListBox" HorizontalAlignment="Left" FontSize="24" Height="77" VerticalAlignment="Top" Width="393" Margin="10,449,0,0" ItemsSource="{Binding}" Foreground="Black"/>
         <Button x:Name="cancelButton" Content="Cancel" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="620,746,0,0" VerticalAlignment="Top" Width="103" Height="48" Click="cancelButton_Click"/>
         <Button x:Name="SaveButton" Content="Save" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="751,746,0,0" VerticalAlignment="Top" Width="103" Height="48" Click="SaveButton_Click"/>
         <Label x:Name="yeildLabel" Content="Yeild" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="461,60,0,0"/>
@@ -24,7 +24,7 @@
         <Label x:Name="servingSizeLabel" Content="Serving Size" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="461,154,0,0"/>
         <Label x:Name="commentSizeLabel" Content="Comments" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="461,413,0,0"/>
         <TextBox x:Name="commentTextBox" HorizontalAlignment="Left" Height="201" Margin="461,460,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="393" FontSize="24"/>
-        <Label x:Name="errorLabel" Content="Error Lable" Foreground="Red" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,689,0,0"/>
+        <Label x:Name="errorLabel" Content="Error Label" Foreground="Red" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,689,0,0"/>
 
     </Grid>
 </Window>
