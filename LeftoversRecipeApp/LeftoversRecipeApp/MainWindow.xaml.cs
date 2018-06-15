@@ -63,7 +63,7 @@ namespace LeftoversRecipeApp
         private Recipe[] getRecipes()
         {
             Recipe[] recipes = (from r in context.Recipes
-                                orderby r.Title
+                                orderby r.RecipeType descending, r.Title
                                 select r).ToArray();
             return recipes;
         }
@@ -144,6 +144,9 @@ namespace LeftoversRecipeApp
         {
             //Remove Selection in the recipe listbox
             recipeListBox.SelectedItem = null;
+
+            //Refresh the data from the database
+            context.RefreshData();
 
             //Call getRecipes method and reload the recipe listbox
             Recipe[] recipes = getRecipes();

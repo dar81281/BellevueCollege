@@ -21,19 +21,7 @@ namespace RecipeClassLibrary
             RecipesXMLLocation = XMLFileFinder.GetXMLRecipesPath();
             IngredientsXMLLocation = XMLFileFinder.GetXMLIngredientsPaths();
             Database.SetInitializer<RecipesContext>(new RecipesContextInitializer());
-            using (RecipesContext context = new RecipesContext())
-            {
-                List<Recipe> rawRecipes = (from Recipe r in context.Recipes
-                           select r).ToList();
-                Recipes = new List<Recipe>();
-                foreach (Recipe r in rawRecipes)
-                {
-                    Recipe newRecipe = CreateRecipe(r);
-                    Recipes.Add(newRecipe);
-                }
-                Ingredients = (from Ingredient i in context.Ingredients
-                               select i).ToList();
-            }
+            RefreshData();
         }
 
         public string[] RecipeFields(Recipe r)
@@ -123,7 +111,24 @@ namespace RecipeClassLibrary
                     return r;
             }
         }
-        
+
+        public void RefreshData()
+        {
+            using (RecipesContext context = new RecipesContext())
+            {
+                List<Recipe> rawRecipes = (from Recipe r in context.Recipes
+                                           select r).ToList();
+                Recipes = new List<Recipe>();
+                foreach (Recipe r in rawRecipes)
+                {
+                    Recipe newRecipe = CreateRecipe(r);
+                    Recipes.Add(newRecipe);
+                }
+                Ingredients = (from Ingredient i in context.Ingredients
+                               select i).ToList();
+            }
+        }
+
 
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
