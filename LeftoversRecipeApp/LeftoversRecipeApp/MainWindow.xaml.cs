@@ -276,7 +276,7 @@ namespace LeftoversRecipeApp
                 string message = "Are you sure that you want to delete: " + targetedRecipe.ToString();
                 string caption = "Deleting Selected Recipe";
                 
-                MessageBoxResult result = MessageBox.Show(message,
+                MessageBoxResult result = System.Windows.MessageBox.Show(message,
                                                           caption,
                                                           MessageBoxButton.YesNo,
                                                           MessageBoxImage.Question);
@@ -339,7 +339,7 @@ namespace LeftoversRecipeApp
                         try
                         {
                             context.SaveChanges();
-                            btnRefresh.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                            btnRefresh.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Button.ClickEvent));
                         }
                         catch
                         {
