@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace RecipeClassLibrary
 {
-    class Dessert : Recipe
+    public class Dessert : Recipe
     {
-        public string type { get; set; }
 
         public override string ToString()
         {
-            return type + "-" + base.Title;
+            return "Dessert - " + base.ToString();
         }
     }
 }

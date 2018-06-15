@@ -29,7 +29,20 @@ namespace RecipeClassLibrary
 
         public int CompareTo(Recipe other)
         {
-            return Title.CompareTo(other.Title);
+            int compare = this.RecipeType.CompareTo(other.RecipeType);
+            if (compare == 1)
+            {
+                return -1;
+            }
+            if (compare == -1)
+            {
+                return 1;
+            }
+            if (compare == 0)
+            {
+                compare = this.Title.CompareTo(other.Title);
+            }
+            return compare;
         }
 
         public override string ToString()
