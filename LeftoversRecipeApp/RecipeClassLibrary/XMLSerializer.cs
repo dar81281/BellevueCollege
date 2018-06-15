@@ -30,7 +30,7 @@ namespace RecipeClassLibrary
                                r.Yield == null ? null :
                                new XElement("Yield", r.Yield),
                                new XElement("Directions", r.Directions),
-                               r.Yield == null ? null :
+                               r.Comment == null ? null :
                                new XElement("Comment", r.Comment))));
             // Check to make sure all recipes made it to the xml (should be 21 as of 31May)
             if (document.Descendants("Recipe").Count() == recipes.Count)

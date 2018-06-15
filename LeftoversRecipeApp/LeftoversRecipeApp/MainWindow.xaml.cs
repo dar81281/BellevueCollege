@@ -48,6 +48,10 @@ namespace LeftoversRecipeApp
                 //Setup database and listbox
                 Recipe[] recipes = getRecipes();
                 recipeListBox.DataContext = recipes;
+
+                //Testing RecipesCollection
+                RecipesCollection rc = new RecipesCollection();
+                
             }
             catch (AccessViolationException ex)
             {
@@ -63,7 +67,7 @@ namespace LeftoversRecipeApp
         private Recipe[] getRecipes()
         {
             Recipe[] recipes = (from r in context.Recipes
-                                orderby r.Title
+                                orderby r.RecipeType descending, r.Title
                                 select r).ToArray();
             return recipes;
         }
@@ -145,6 +149,9 @@ namespace LeftoversRecipeApp
             //Remove Selection in the recipe listbox
             recipeListBox.SelectedItem = null;
 
+            //Refresh the data from the database
+            context.RefreshData();
+
             //Call getRecipes method and reload the recipe listbox
             Recipe[] recipes = getRecipes();
             recipeListBox.DataContext = recipes;
@@ -199,6 +206,7 @@ namespace LeftoversRecipeApp
                     //If no recipes were found then inform user in the error lable.
                     if (foundRecipes.Count > 0)
                     {
+                        recipeListBox.SelectedItem = null;
                         foundRecipes.Sort();
                         recipeListBox.DataContext = foundRecipes;
                     }
@@ -216,5 +224,24 @@ namespace LeftoversRecipeApp
                 errorLabel.Content = baseexception.Message;
             }
         }
+        //private void AddButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        AddRecipeDialog dialog = new AddRecipeDialog();
+        //        if (dialog.ShowDialog() == true)
+        //        {
+        //            int newRecipeID = RecipeIDBuilder.GetRecipeID(context.Recipes);
+        //            Recipe r = RecipeBuilder.BuildRecipe(dialog.titleTextBox.Text, dialog.directionTextBox.Text, dialog.recipeTypeListBox.SelectedValue.ToString(), newRecipeID, dialog.yeildTextBox.Text, dialog.servingSizeTextBox.Text, dialog.commentTextBox.Text);
+
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        var baseexception = ex.GetBaseException();
+        //        errorLabel.Content = baseexception.Message;
+        //    }
+        //}
     }
 }
