@@ -30,5 +30,6 @@
         <Button x:Name="btnExit" Content="E_xit"  HorizontalAlignment="Left" FontSize="24" FontWeight="Bold" Margin="1213,556,0,0" VerticalAlignment="Top" Width="144" Height="50" Click="btnExit_Click"/>
         <Button x:Name="btnSearch" Content="Search" HorizontalAlignment="Left" Margin="1213,408,0,0" VerticalAlignment="Top" Width="144" Height="50" FontSize="24" FontWeight="Bold" Click="btnSearch_Click"/>
         <Button x:Name="addButton" Content="Add Recipe" HorizontalAlignment="Left" FontSize="24" FontWeight="Bold" Margin="1213,345,0,0" VerticalAlignment="Top" Width="144" Height="37" Click="addButton_Click"/>
+        <Button x:Name="deleteButton" Content="Delete Recipe" HorizontalAlignment="Left" FontSize="24" FontWeight="Bold" Margin="1213,294,0,0" VerticalAlignment="Top" Width="173" Height="37" Click="deleteButton_Click"/>
     </Grid>
 </Window>

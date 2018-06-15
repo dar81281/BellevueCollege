@@ -17,6 +17,7 @@ using RecipeClassLibrary;
 using System.Xml.Linq;
 using System.Xml;
 using GenericSearch;
+using System.Windows.Forms;
 
 
 
@@ -268,5 +269,32 @@ namespace LeftoversRecipeApp
             }
         }
 
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Recipe targetedRecipe = (Recipe)recipeListBox.SelectedItem;
+
+                string message = "Are you sure that you want to delete: " + targetedRecipe.ToString();
+                string caption = "Deleting Selected Recipe";
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult result;
+
+                // Displays the MessageBox.
+
+                result = System.Windows.Forms.MessageBox.Show(message, caption, buttons);
+                if ()
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                var baseexception = ex.GetBaseException();
+                errorLabel.Content = baseexception.Message;
+            }
+
+        }
     }
 }
